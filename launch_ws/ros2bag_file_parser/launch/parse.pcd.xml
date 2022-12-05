@@ -1,0 +1,11 @@
+<launch>
+  <!-- This launchfile extract a certain pcd from the given directory-->
+  <group>
+   <node pkg="ros2bag_file_parser" exec="ros2bag_file_parser_node" name="ros2bag_file_parser_node">
+      <param name="rosbag_directory" value="/home/uctseaice/Documents/bag_files/rosbag2_2022_12_02-15_12_21"/>
+      <param name="output_directory" value="/home/uctseaice/Documents/PCDS"/>
+      <param name="topic" value="/camera/depth/color/points"/>
+   </node>
+  </group>
+
+</launch>                        
