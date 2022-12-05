@@ -20,7 +20,9 @@ Both lidar and realsense data can be simutenously captured and recored by callin
 ```bash
    ./simple.sh
 ```
-5. To stop the recording, exit the terminal using `CTL-C`
+5. You should also set up where you would want to keep the recordings otherwise they would be kept whereever you call the launch file, to chage the locatio of the recording you can uncoment [the line with the change of dir](simple.sh?plain=1#L5) in the file [simple.sh](simple.sh)
 
-6. The recorded data can be found on the desktop recordings directory named and ordered by date and time
+6. To stop the recording, exit the terminal using `CTL-C`
+
+7. The recorded data can be found where you set them to be or in the same folder as the *simple.sh* recordings directory named and ordered by date and time
 
