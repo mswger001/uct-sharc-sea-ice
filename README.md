@@ -15,6 +15,7 @@ Both lidar and realsense data can be simutenously captured and recored by callin
 
 3.2. Refer to the [Livox Avia User Manual](https://www.livoxtech.com/de/avia/downloads) on how to set the IP address of the computer.
 
+## Recording and playing back the data 
 4. At this point you should be able to use the launch file in this folder to start recording the data fro the two sensors by calling
 
 ```bash
@@ -26,3 +27,11 @@ Both lidar and realsense data can be simutenously captured and recored by callin
 
 7. The recorded data can be found where you set them to be or in the same folder as the *simple.sh* recordings directory named and ordered by date and time
 
+8. To replay a bag one can use the following on the terminal
+```bash
+   ros2 bag play <bag_file_name>db3
+```
+the filename can include the path to the file if instructionis run in a different location of the bag file
+## Parsing the bag files to extract required topics 
+
+1. After having ros and all the required drivers installed, you could extract pcds, images, and other required data from the bag files
