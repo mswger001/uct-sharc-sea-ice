@@ -1,7 +1,9 @@
  ROS_DISTRO=foxy  
  
- source ./ros2_ws/install/local_setup.sh 
- source ./ws_livox/install/local_setup.sh
+ source ~/ros2_ws/install/local_setup.sh 
+ source ~/ws_livox/install/local_setup.sh
  source /opt/ros/foxy/setup.bash
  
- ros2 launch launch_ws/launch/fin_launch.py
+ cd /home/uctseaice/Documents/bag_files
+ 
+ ros2 launch /home/uctseaice/Desktop/launch/dual_launch.py
