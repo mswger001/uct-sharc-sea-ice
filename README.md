@@ -37,7 +37,11 @@ the filename can include the path to the file if instructionis run in a differen
 1. After having ros and all the required drivers installed, you could extract pcds, images, and other required data from the bag files
 
 2.the topics that can be extracted for this project include but are not limited to the following 
+
+
       -/camera/depth/color/points which is of pointcloud2 type message
+      
       -/livox/lidar which is of pointcloude2 type message
+      
       -/camera/color/image_raw which is of img type mesage
     
