@@ -45,5 +45,5 @@ the filename can include the path to the file if instructionis run in a differen
       
       -/camera/color/image_raw which is of img type mesage
       
- 3. there are two parsers implemented on in [python](extract_livox_data.py) [cpp](launch_ws)
+ 3. there are two parsers implemented on in [python](python_pcd_extractor/extract_livox_data.py)  and in [cpp](launch_ws)
     
