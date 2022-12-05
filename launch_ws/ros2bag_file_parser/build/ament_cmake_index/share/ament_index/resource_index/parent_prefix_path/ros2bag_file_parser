@@ -1,0 +1,1 @@
+/opt/ros/foxy:/home/uctseaice/ws_livox/install/livox_ros2_driver:/home/uctseaice/ws_livox/install/livox_sdk_vendor:/home/uctseaice/ws_livox/install/livox_interfaces:/home/uctseaice/ros2_ws/install/realsense2_description:/home/uctseaice/ros2_ws/install/realsense2_camera:/home/uctseaice/ros2_ws/install/realsense2_camera_msgs
