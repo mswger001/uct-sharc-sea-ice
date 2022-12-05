@@ -3,5 +3,4 @@
 
  preset files can be found on the [link](https://dev.intelrealsense.com/docs/d400-series-visual-presets) download prefered json file and change as needed 
 
- ## Changing the destinantion of the recorded bags 
 
