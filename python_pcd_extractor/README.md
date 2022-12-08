@@ -1,9 +1,9 @@
 ## GETTING STARTED
 
-1. dowload the python library [pypcd](/python_pcd_extractor/pypcd)
-2. install it
-3. run the extractor with your bag file location replaced in the script
+1. Install the python library [pypcd](python_pcd_extractor/pypcd)
+2. Run the python file from the location of the bag file you want to extract pcds from, below is an example of the file being located ont the desktop
 
 
-    python ~/Desktop/extract_livox_data.py
+
+    python ~/Desktop/python_pcd_extractor/extract_livox_data.py
 
