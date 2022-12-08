@@ -1,6 +1,6 @@
 #include "ros2bag_file_parser/ros2bag_file_parser.hpp"
 #include "pcl_conversions.h"
-
+#include <experimental/filesystem>
 #include <pcl/PCLPointCloud2.h>
 #include <pcl/conversions.h>
 
@@ -60,8 +60,10 @@ void Ros2BagFIleParser::parse(){
         auto bag_message = reader.read_next();
         if (bag_message->topic_name == this->topic) {
             this->deserialize_message_by_topic(bag_message, this->topic);
+              RCLCPP_INFO_STREAM(this->get_logger(), "DONE PROCCESSING MESSAGE");
         }
-        //RCLCPP_INFO_STREAM(this->get_logger(), "DONE PROCCESSING MESSAGE");
+         //RCLCPP_INFO_STREAM(this->get_logger(),bag_message->topic_name );
+      
     }
 
 }
@@ -91,6 +93,16 @@ void Ros2BagFIleParser::deserialize_message_by_topic(auto bag_message, std::stri
          RCLCPP_INFO_STREAM(this->get_logger(), "MESSAGE");
          
     }
+    if (topic == "/livox/lidar"){
+         sensor_msgs::msg::PointCloud2 pc2  = 
+            this->deserialize_message<sensor_msgs::msg::PointCloud2>(bag_message);
+        file_parser_util.save(pc2);
+         RCLCPP_INFO_STREAM(this->get_logger(), "MESSAGE");
+         
+    }
+   
+
+    
 
 }
 
@@ -100,8 +112,8 @@ void Ros2BagFIleParser::set_default_parameters(){
     this->declare_parameter("topic", std::string("/camera/depth/color/points"));
     this->get_parameter("topic", this->topic);
     // bag_directory
-    //this->declare_parameter("rosbag_directory", std::string("/home/uctseaice/bag1"));
-    //this->get_parameter("rosbag_directory", this->rosbag_directory);
+    this->declare_parameter("rosbag_directory", std::string("/home/uctseaice/bag1"));
+    this->get_parameter("rosbag_directory", this->rosbag_directory);
     // output directory
     this->declare_parameter("output_directory", std::string("/home/uctseaice/Documents/PCDS"));
     this->get_parameter("output_directory", this->output_directory);
@@ -155,6 +167,14 @@ void FileParserUtil::save(sensor_msgs::msg::PointCloud2 pc2){
         std::string secs = std::to_string(pc2.header.stamp.sec);
         std::string nsecs = std::to_string(pc2.header.stamp.nanosec);
         std::string timestr = secs + "_" + nsecs;
+      
+    
+       namespace fs = std::experimental::filesystem;
+
+
+	if (!fs::is_directory(this->output_directory) || !fs::exists(this->output_directory)) { // Check if src folder exists
+	    fs::create_directory(this->output_directory); // create src folder
+	}
         std::string pcd_name = (this->output_directory + "/" + timestr + ".pcd");
         pcl::io::savePCDFileASCII(pcd_name, *temp_cloud);
         
