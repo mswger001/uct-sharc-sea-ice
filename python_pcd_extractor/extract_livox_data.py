@@ -46,29 +46,50 @@ class BagFileParser():
 if __name__ == "__main__":
 	
 	# set bagfile location
-        bag_file = '/home/uctseaice/bag1/rosbag2_2022_11_25-13_04_57_0.db3'
-        # set output location
+        bag_file = 'default'
+        dir_path = os.getcwd()
+        final_path = ''
+   
+        for path in os.scandir(dir_path):
+            if path.is_file():
+                
+                # extract the file name and extension
+                split_tup = path.name.split(".")
+                file_name = split_tup[0]
+                file_extension = split_tup[1]
+                if file_extension == 'db3':
+                    bag_file = path.path
+                    final_path = path.name
+                
         
-        out = "/home/uctseaice/Documents/PCDS/bag1"
-        isExist = os.path.exists(out)
-        if not isExist:
-        	os.mkdir(out)
+       
+        if bag_file != "default":
+            print("bag file found at "+ bag_file)
+            # set output location
+            out = "/home/uctseaice/Documents/PCDS/"+ final_path
+            isExist = os.path.exists(out)
+            if not isExist:
+                os.mkdir(out)
 
-        parser = BagFileParser(bag_file)
-        pcds = parser.get_messages("/livox/lidar")
-    
-    
-    
-    
-    
+            parser = BagFileParser(bag_file)
+            pcds = parser.get_messages("/livox/lidar")
+        
+        
+        
+        
+        
 
-        for i in range(len(pcds)):
-            pcd = pcds[i]
-            pcd_data =pcd[1]
-            
-            
-            pc = pypcd.PointCloud.from_msg(pcd_data)
-            pc.save(out+"/022_11_25-13_04_57_"+str(i)+'.pcd')
-            
-
-
+            for i in range(len(pcds)):
+                pcd = pcds[i]
+                pcd_data =pcd[1]
+                
+                
+                pc = pypcd.PointCloud.from_msg(pcd_data)
+                pc.save(out+"/"+final_path+str(i)+'.pcd')
+            print("saved "+ str(len(pcds))+ "pcds in the following directory"+ out)
+        
+        else:
+            print("no bag file found in the current location")
+                
+        
+        
