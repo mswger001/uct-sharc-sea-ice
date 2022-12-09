@@ -1,0 +1,11 @@
+<launch>
+  <!-- This launchfile should bring up a node that broadcasts enviro sensor data on the /enviro_data topic-->
+  <group>
+   <node pkg="ros2bag_file_parser" exec="ros2bag_file_parser_node" name="ros2bag_file_parser_node">
+      <param name="rosbag_directory" value="/home/uctseaice/Documents/bag_files/rosbag2_2022_12_07-11_59_30"/>
+      <param name="output_directory" value="/home/uctseaice/Documents/images/rosbag2_2022_12_07-11_59_30"/>
+      <param name="topic" value="/camera/color/image_raw"/>
+   </node>
+  </group>
+
+</launch>                        
